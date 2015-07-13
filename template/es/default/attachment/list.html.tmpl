@@ -68,7 +68,7 @@ function toggle_display(link) {
         <td>
           [% IF attachment.datasize %]
             <a href="attachment.cgi?id=[% attachment.id %]"
-               title="View the content of the attachment">
+               title="Ver el contenido del Archivo Adjunto">
           [% END %]
           <b>[% attachment.description FILTER html FILTER obsolete(attachment.isobsolete) %]</b>
           [% "</a>" IF attachment.datasize %]
@@ -87,7 +87,7 @@ function toggle_display(link) {
 
             <br>
             <a href="#attach_[% attachment.id %]"
-               title="Go to the comment associated with the attachment">
+               title="Ir al comentario asociado al Archivo Adjunto">
               [%- attachment.attached FILTER time("%Y-%m-%d %H:%M %Z") %]</a>,
 
             [%# No need to recreate the exact same template if we already have it. %]
@@ -130,7 +130,7 @@ function toggle_display(link) {
         [% END %]
 
         <td>
-          <a href="attachment.cgi?id=[% attachment.id %]&amp;action=edit">Details</a>
+          <a href="attachment.cgi?id=[% attachment.id %]&amp;action=edit">Detalles</a>
           [% IF attachment.ispatch && feature_enabled('patch_viewer') %]
             | <a href="attachment.cgi?id=[% attachment.id %]&amp;action=diff">Diff</a>
           [% END %]
@@ -145,19 +145,19 @@ function toggle_display(link) {
       [% IF attachments.size %]
         <span class="bz_attach_view_hide">
           [% IF obsolete_attachments %]
-            <a href="#a0" onclick="return toggle_display(this);">Show
-              Obsolete</a> ([% obsolete_attachments %])
+            <a href="#a0" onclick="return toggle_display(this);">Mostrar
+              Obsoleto</a> ([% obsolete_attachments %])
           [% END %]
           [% IF Param("allow_attachment_display") %]
             <a id="view_all" href="attachment.cgi?bugid=
                   [%- bugid %]&amp;action=viewall
-                  [%- "&amp;hide_obsolete=1" IF obsolete_attachments %]">View All</a>
+                  [%- "&amp;hide_obsolete=1" IF obsolete_attachments %]">Ver Todos</a>
           [% END %]
         </span>
       [% END %]
       [% IF Param("maxattachmentsize") || Param("maxlocalattachment") %]
-        <a href="attachment.cgi?bugid=[% bugid %]&amp;action=enter">Add an attachment</a>
-        (proposed patch, testcase, etc.)
+        <a href="attachment.cgi?bugid=[% bugid %]&amp;action=enter">Agregar un Archivio Adjunto</a>
+        (parche propuesto, caso de uso, etc.)
       [% END %]
     </td>
   </tr>

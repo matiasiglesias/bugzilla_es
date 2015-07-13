@@ -4,6 +4,14 @@
   #
   # This Source Code Form is "Incompatible With Secondary Licenses", as
   # defined by the Mozilla Public License, v. 2.0.
+    #
+  # The Original Code is the Bugzilla Bug Tracking System.
+  #
+  # Contributor(s): Matias Iglesias <matiasiglesias@matiasiglesias.com.ar>
+  # Latest version of this Spanish localization template
+  # can be found at <http://github.com/matiasiglesias/bugzilla_es>
+  #
+  # Contributions are Welcome.
   #%]
 
 [%# INTERFACE:
@@ -14,7 +22,7 @@
 [% cgi = Bugzilla.cgi %]
 
 [% PROCESS global/header.html.tmpl
-   title = "Enter $terms.ABug"
+   title = "Registrar $terms.ABug"
    onload = "PutDescription()"
    style_urls = ['skins/standard/bug.css']
  %]
@@ -38,20 +46,19 @@ function PutDescription() {
 }
 </script>
 
-<h3 id="step1">Step 1 of 3 - has your [% terms.bug %] already been reported?</h3>
+<h3 id="step1">Paso 1 de 3 - su [% terms.bug %] ya ha sido reportado?</h3>
 
 <p class="warning">
-  Please don't skip this step - half of all [% terms.bugs %] filed are
-  reported already.
+  Por favor, no omita este paso - la mitad de todos los [% terms.bugs %] archivados ya han sido reportados.
 </p>
 
-<p>Check the two lists of frequently-reported [% terms.bugs %]:</p>
+<p>Chequee las dos listas de [% terms.bugs %] frecuentemente informados:</p>
 
 <p>
   <a href="duplicates.cgi?product=[% product.name FILTER uri %]&amp;format=simple"
-     target="somebugs">All-time Top 100</a> (loaded initially) |
+     target="somebugs">Todos los tiempos Top 100</a> (cargado inicialmente) |
   <a href="duplicates.cgi?product=[% product.name FILTER uri %]&amp;format=simple&amp;sortby=delta&amp;reverse=1&amp;maxrows=100&amp;changedsince=14"
-     target="somebugs">Hot in the last two weeks</a>
+     target="somebugs">Caliente en las &uacute;ltimas 2 semanas</a>
 </p>
 
 <iframe name="somebugs" id="somebugs"
@@ -59,13 +66,13 @@ function PutDescription() {
 </iframe>
 
 <p>
-    If your [% terms.bug %] isn't there, search [% terms.Bugzilla %] by entering
-    a few key words having to do with your [% terms.bug %] in this box.
-    For example: <kbd><b>pop3 mail</b></kbd> or <kbd><b>copy paste</b></kbd>.
-    The results will appear above.
+    Si su [% terms.bug %] no est&aacute; aqu&iacute;, busque [% terms.Bugzilla %] ingresando 
+    algunas paralabras claves relacionadas con su [% terms.bug %] en esta caja.
+    Por ejemplo: <kbd><b>pop3 mail</b></kbd> or <kbd><b>copy paste</b></kbd>.
+    Los resultados aparecerán arriba.
 </p>
 
-[%# All bugs opened inside the past six months %]
+[%# Todos los errores que se abrieron en los &uacute;ltimos seis meses %]
   <form action="buglist.cgi" method="get" target="somebugs">
     <input type="hidden" name="format" value="simple">
     <input type="hidden" name="order" value="relevance desc">
@@ -79,16 +86,16 @@ function PutDescription() {
   </form>
 
 <p>
-  Look through the search results. If you get the
-  <kbd><b>[% terms.zeroSearchResults %]</b></kbd> message, [% terms.Bugzilla %]
-  found no [% terms.bugs %] that
-  match. Check for typing mistakes, or try fewer or different keywords.
-  If you find [% terms.abug %] that looks the same as yours, please add
-  any useful extra information you have to it, rather than opening a new one.
+  Mire a trav&eacute;s de los resultados de búsqueda. Si obtiene el mensaje
+  <kbd><b>[% terms.zeroSearchResults %]</b></kbd>, [% terms.Bugzilla %]
+  no ha encontrado [% terms.bugs %] que
+  coincidan. Compruebe si hay errores de tipeo, o trate con menos o diferentes palabras clave.
+  Si encuentra [% terms.abug %] que tiene el mismo aspecto que el suyo, por favor agregue
+   cualquier informaci&oacute;n adicional &uacute;til que tiene a la misma, en lugar de abrir una nueva.
 </p>
 
 
-<h3 id="step2">Step 2 of 3 - give information</h3>
+<h3 id="step2">Paso 2 de 3 - dar informaci&oacute;n</h3>
 
 <p>
   If you've tried a few searches and your [% terms.bug %] really isn't in 

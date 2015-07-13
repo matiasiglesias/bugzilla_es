@@ -4,6 +4,14 @@
   #
   # This Source Code Form is "Incompatible With Secondary Licenses", as
   # defined by the Mozilla Public License, v. 2.0.
+  #
+  # The Original Code is the Bugzilla Bug Tracking System.
+  #
+  # Contributor(s): Matias Iglesias <matiasiglesias@matiasiglesias.com.ar>
+  # Latest version of this Spanish localization template
+  # can be found at <http://github.com/matiasiglesias/bugzilla_es>
+  #
+  # Contributions are Welcome.
   #%]
 
 [%# INTERFACE:
@@ -54,7 +62,7 @@
       <button type="button" class="calendar_button"
               id="button_calendar_[% field.name FILTER html %]"
               onclick="showCalendar('[% field.name FILTER js %]')">
-        <span>Calendar</span>
+        <span>Calendario</span>
       </button>
 
       <div id="con_calendar_[% field.name FILTER html %]"></div>
@@ -175,7 +183,7 @@
              [% PROCESS bug_url_link bug_url = bug_url %]
              <label><input type="checkbox" value="[% bug_url.name FILTER html %]"
                            name="remove_[% field.name FILTER html %]">
-               Remove</label>
+               Eliminar</label>
            </li>
          [% END %]
          </ul>

@@ -4,6 +4,14 @@
   #
   # This Source Code Form is "Incompatible With Secondary Licenses", as
   # defined by the Mozilla Public License, v. 2.0.
+  #
+  # The Original Code is the Bugzilla Bug Tracking System.
+  #
+  # Contributor(s): Matias Iglesias <matiasiglesias@matiasiglesias.com.ar>
+  # Latest version of this Spanish localization template
+  # can be found at <http://github.com/matiasiglesias/bugzilla_es>
+  #
+  # Contributions are Welcome.
   #%]
 
 [% title = BLOCK %]Enter [% terms.Bug %]: [% product.name FILTER html %][% END %]
@@ -68,12 +76,12 @@ var status_comment_required = new Array();
     [% status.comment_required_on_change_from() ? 'true' : 'false' %]
 [% END %]
 
-TUI_alternates['expert_fields'] = 'Show Advanced Fields';
+TUI_alternates['expert_fields'] = 'Mostrar campos avanzados';
 // Hide the Advanced Fields by default, unless the user has a cookie
 // that specifies otherwise.
 TUI_hide_default('expert_fields');
 // Also hide the "Paste text as attachment" textarea by default.
-TUI_hide_default('attachment_text_field');
+TUI_hide_default('attachment_text_field');Informante
 -->
 </script>
 
@@ -97,8 +105,7 @@ TUI_hide_default('attachment_text_field');
   <tr>
     <td colspan="2">
       <a id="expert_fields_controller" class="controller bz_default_hidden"
-         href="javascript:TUI_toggle_class('expert_fields')">Hide
-        Advanced Fields</a>
+         href="javascript:TUI_toggle_class('expert_fields')">Ocultar campos avanzados</a>
       [%# Show the link if the browser supports JS %]
       <script type="text/javascript">
         YAHOO.util.Dom.removeClass('expert_fields_controller', 
@@ -107,7 +114,7 @@ TUI_hide_default('attachment_text_field');
     </td>
     <td colspan="2">
       (<span class="required_star">*</span> =
-      <span class="required_explanation">Required Field</span>)
+      <span class="required_explanation">Campo requerido</span>)
    </td>
   </tr>
 
@@ -174,8 +181,8 @@ TUI_hide_default('attachment_text_field');
         <tr>
           <td>
             <fieldset>
-              <legend>Component Description</legend>
-              <div id="comp_desc" class="comment">Select a component to read its description.</div>
+              <legend>Descripci&oacute;n del Componente</legend>
+              <div id="comp_desc" class="comment">Seleccione un Producto para ver su descripci&oacute;n.</div>
             </fieldset>
           </td>
         </tr>
@@ -230,15 +237,15 @@ TUI_hide_default('attachment_text_field');
       <td colspan="2" class="expert_fields">&nbsp;</td>
       <td>&nbsp;</td>
       <td id="os_guess_note" class="comment">
-        <div>We've made a guess at your
+        <div>Hemos detectado autom&aacute;ticamente su
         [% IF Param('defaultplatform') %]
-          operating system. Please check it
+          sistema operativo. Por favor chequ&eacute;elo
         [% ELSIF Param('defaultopsys') %]
-          platform. Please check it
+          plataforma. Por favor chequ&eacute;ela
         [% ELSE %]
-          operating system and platform. Please check them
+          sistema operativo y plataforma. Por favor chequ&eacute;elos
         [% END %]
-        and make any corrections if necessary.</div>
+        y haga las correcciones de ser necesarias.</div>
       </td>
     </tr>
   [% END %]
@@ -308,7 +315,7 @@ TUI_hide_default('attachment_text_field');
          emptyok => 1
          custom_userlist => assignees_list
        %]
-      <noscript>(Leave blank to assign to component's default assignee)</noscript>
+      <noscript>(Dejar vac&iacute;o para asignar al asignado por defecto del Componente)</noscript>
     </td>
   </tr>
   
@@ -327,7 +334,7 @@ TUI_hide_default('attachment_text_field');
          emptyok => 1
          custom_userlist => qa_contacts_list
        %]
-        <noscript>(Leave blank to assign to default qa contact)</noscript>
+        <noscript>(Dejar vac&iacute;o para asignar al contacto qa por defecto)</noscript>
       </td>
     </tr>
 [% END %]
@@ -430,7 +437,7 @@ TUI_hide_default('attachment_text_field');
   [% IF feature_enabled('jsonrpc') AND !cloned_bug_id
         AND user.settings.possible_duplicates.value == 'on' %]
     <tr id="possible_duplicates_container" class="bz_default_hidden">
-      <th>Possible<br>Duplicates:</th>
+      <th>Posibles<br>Duplicados:</th>
       <td colspan="3">
         <div id="possible_duplicates"></div>
         <script type="text/javascript">
@@ -446,16 +453,16 @@ TUI_hide_default('attachment_text_field');
               { key: "update_token", label: '',
                 formatter: YAHOO.bugzilla.dupTable.formatCcButton }
           ];
-          YAHOO.bugzilla.dupTable.addCcMessage = "Add Me to the CC List";
+          YAHOO.bugzilla.dupTable.addCcMessage = "Agregarme a la Lista CC";
           YAHOO.bugzilla.dupTable.init({
             container: 'possible_duplicates',
             columns: dt_columns,
             product_name: '[% product.name FILTER js %]',
             summary_field: 'short_desc',
             options: {
-              MSG_LOADING: 'Searching for possible duplicates...',
-              MSG_EMPTY:   'No possible duplicates found.',
-              SUMMARY:     'Possible Duplicates'
+              MSG_LOADING: 'Buscando posibles duplicados...',
+              MSG_EMPTY:   'No se encontraron posibles duplicados.',
+              SUMMARY:     'Posibles Duplicados'
             }
           });
         </script>
@@ -464,12 +471,12 @@ TUI_hide_default('attachment_text_field');
   [% END %]
 
   <tr>
-    <th>Description:</th>
+    <th>Descripci&oacute;n:</th>
     <td colspan="3">
 
       [% defaultcontent = BLOCK %]
         [% IF cloned_bug_id %]
-+++ This [% terms.bug %] was initially created as a clone of [% terms.Bug %] #[% cloned_bug_id %] +++
++++ This [% terms.bug %] fue originalmente creado como una copia del [% terms.Bug %] #[% cloned_bug_id %] +++
 
 
         [% END %]
@@ -496,8 +503,8 @@ TUI_hide_default('attachment_text_field');
           [% ' checked="checked"' IF comment_is_private %]
                onClick="updateCommentTagControl(this, 'comment')">
         <label for="comment_is_private">
-          Make description and any new attachment private (visible only to members 
-          of the <strong>[% Param('insidergroup') FILTER html %]</strong> group)
+          Haga descripci&oacute;n y cualquier nuevo adjunto privado (visible solo para miembros
+           del grupo <strong>[% Param('insidergroup') FILTER html %]</strong>)
         </label>
       </td>
     </tr>
@@ -508,17 +515,17 @@ TUI_hide_default('attachment_text_field');
 
   [% IF Param("maxattachmentsize") || Param("maxlocalattachment") %]
   <tr>
-    <th>Attachment:</th>
+    <th>Adjunto:</th>
     <td colspan="3">
       <div id="attachment_false" class="bz_default_hidden">
-        <input type="button" value="Add an attachment" onClick="handleWantsAttachment(true)">
+        <input type="button" value="Agregar un adjunto" onClick="handleWantsAttachment(true)">
       </div>
 
       <div id="attachment_true">
-        <input type="button" id="btn_no_attachment" value="Don't add an attachment"
+        <input type="button" id="btn_no_attachment" value="No agregar archivo adjunto"
                class="bz_default_hidden"  onClick="handleWantsAttachment(false)">
         <fieldset>
-          <legend>Add an attachment</legend>
+          <legend>Agregar un archivo adjunto</legend>
           <table class="attachment_entry">
             [% PROCESS attachment/createformcontents.html.tmpl
                        flag_types = product.flag_types.attachment
@@ -581,12 +588,11 @@ TUI_hide_default('attachment_text_field');
     <td colspan="3">
       <br>
         <strong>
-          Only users in [%+ IF Param('or_groups') %]at least one[% ELSE %]all[% END %] of the selected groups can view this 
-          [%+ terms.bug %]:
+          S&oacute;lo los usuario en [%+ IF Param('or_groups') %]el menos uno[% ELSE %]todos[% END %] de los siguientes grupos pueden ver este [%+ terms.bug %]:
         </strong>
       <br>
       <span class="bz_info">
-        (Leave all boxes unchecked to make this a public [% terms.bug %].)
+        (Deje todos los casilleros destildados para hacer este [% terms.bug %] p&uacute;blico.)
       </span>
       <br>
       <br>
@@ -613,10 +619,10 @@ TUI_hide_default('attachment_text_field');
   <tr>
     <th>&nbsp;</th>
     <td colspan="3">
-      <input type="submit" id="commit" value="Submit [% terms.Bug %]">
+      <input type="submit" id="commit" value="Enviar [% terms.Bug %]">
       &nbsp;&nbsp;&nbsp;&nbsp;
       <input type="submit" name="maketemplate" id="maketemplate"
-             value="Remember values as bookmarkable template"
+             value="Recuerdar valores como una plantilla"
              onclick="bz_no_validate_enter_bug=true" class="expert_fields">
     </td>
   </tr>

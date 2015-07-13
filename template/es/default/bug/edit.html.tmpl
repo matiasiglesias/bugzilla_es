@@ -4,6 +4,14 @@
   #
   # This Source Code Form is "Incompatible With Secondary Licenses", as
   # defined by the Mozilla Public License, v. 2.0.
+  #
+  # The Original Code is the Bugzilla Bug Tracking System.
+  #
+  # Contributor(s): Matias Iglesias <matiasiglesias@matiasiglesias.com.ar>
+  # Latest version of this Spanish localization template
+  # can be found at <http://github.com/matiasiglesias/bugzilla_es>
+  #
+  # Contributions are Welcome.
   #%]
 
 [% PROCESS bug/time.html.tmpl %]
@@ -13,7 +21,7 @@
     <div id="bz_ctag_div" class="bz_default_hidden">
       <a href="javascript:void(0)" onclick="YAHOO.bugzilla.commentTagging.hideInput()">x</a>
       <div>
-        <input id="bz_ctag_add" size="10" placeholder="add tag"
+        <input id="bz_ctag_add" size="10" placeholder="agregar etiqueta"
               maxlength="[% constants.MAX_COMMENT_TAG_LENGTH FILTER html %]">
         <span id="bz_ctag_autocomp"></span>
       </div>
@@ -29,13 +37,13 @@
       YAHOO.bugzilla.commentTagging.init([% user.can_tag_comments ? 'true' : 'false' %]);
       YAHOO.bugzilla.commentTagging.min_len = [% constants.MIN_COMMENT_TAG_LENGTH FILTER js %];
       YAHOO.bugzilla.commentTagging.max_len = [% constants.MAX_COMMENT_TAG_LENGTH FILTER js %];
-      YAHOO.bugzilla.commentTagging.label = 'Comment Tags:';
+      YAHOO.bugzilla.commentTagging.label = 'Etiquetas del Comentario:';
       YAHOO.bugzilla.commentTagging.min_len_error =
-        'Comment tags must be at least
-        [%~ " " _ constants.MIN_COMMENT_TAG_LENGTH FILTER js %] characters.';
+        'Las etiquetas del Comentario deben tener al menos
+        [%~ " " _ constants.MIN_COMMENT_TAG_LENGTH FILTER js %] caracteres.';
       YAHOO.bugzilla.commentTagging.max_len_error =
-        'Comment tags cannot be longer than
-        [%~ " " _ constants.MAX_COMMENT_TAG_LENGTH FILTER js %] characters.';
+        'Las etiquetas del Comentario no pueden tener mas de
+        [%~ " " _ constants.MAX_COMMENT_TAG_LENGTH FILTER js %] caracteres.';
     </script>
   [% END %]
 [% END %]
@@ -195,7 +203,7 @@
       - <span id="short_desc_nonedit_display">[% bug.short_desc FILTER quoteUrls(bug) %]</span>
       [% can_edit_short_desc = bug.check_can_change_field('short_desc', 0, 1) %]
       [% IF can_edit_short_desc %]
-        <small>(<a href="#" id="summary_edit_action">edit</a>)</small>
+        <small>(<a href="#" id="summary_edit_action">editar</a>)</small>
       [% END %]
      </span>
 
@@ -307,7 +315,7 @@
 [% BLOCK section_status %]
   <tr>
     <th class="field_label">
-      <a href="page.cgi?id=fields.html#bug_status">Status</a>:
+      <a href="page.cgi?id=fields.html#bug_status">Estado</a>:
     </th>
     <td id="bz_field_status">
       <span id="static_bug_status">
@@ -320,7 +328,7 @@
         [% END %]
         [% IF bug.user.canedit || bug.user.isreporter %]
           (<a href="#add_comment" 
-              onclick="window.setTimeout(function() { document.getElementById('bug_status').focus(); }, 10)">edit</a>)
+              onclick="window.setTimeout(function() { document.getElementById('bug_status').focus(); }, 10)">editar</a>)
         [% END %]
       </span>
     </td>
@@ -340,7 +348,7 @@
       <th class="field_label">
         [% can_edit_priority = bug.check_can_change_field('priority', 0, 1) %]
         <label [% IF can_edit_priority %]for="priority"[% END %] accesskey="i">
-          <a href="page.cgi?id=fields.html#importance"><u>I</u>mportance</a></label>:
+          <a href="page.cgi?id=fields.html#importance"><u>I</u>mportancia</a></label>:
       </th>
       <td>
        [% INCLUDE bug/field.html.tmpl
@@ -394,7 +402,7 @@
               [% INCLUDE global/user.html.tmpl who = bug.assigned_to %]
               (<a href="#" id="bz_assignee_edit_action">edit</a>)
               [% IF bug.assigned_to.id != user.id %]
-                (<a title="Reassign to yourself" 
+                (<a title="Reasignar a ti mismo" 
                     href="#" id="bz_assignee_take_action">take</a>)
               [% END %]
             </span>
@@ -409,7 +417,7 @@
             %]
             <br>
             <input type="checkbox" id="set_default_assignee" name="set_default_assignee" value="1">
-            <label id="set_default_assignee_label" for="set_default_assignee">Reset Assignee to default</label>
+            <label id="set_default_assignee_label" for="set_default_assignee">Reasignar al asignado por defecto</label>
           </div>
           <script type="text/javascript">
            hideEditableField('bz_assignee_edit_container', 
@@ -446,7 +454,7 @@
               [% INCLUDE global/user.html.tmpl who = bug.qa_contact %]
               (<a href="#" id="bz_qa_contact_edit_action">edit</a>)
               [% IF bug.qa_contact.id != user.id %]
-                (<a title="Change QA contact to yourself" 
+                (<a title="Cambiar contacto QA a ti mismo" 
                     href="#" id="bz_qa_contact_take_action">take</a>)
               [% END %]
             </span>
@@ -462,7 +470,7 @@
             %]
             <br>
             <input type="checkbox" id="set_default_qa_contact" name="set_default_qa_contact" value="1">
-            <label for="set_default_qa_contact" id="set_default_qa_contact_label">Reset QA Contact to default</label>
+            <label for="set_default_qa_contact" id="set_default_qa_contact_label">Cambiar al contacto QA por defecto</label>
           </div>
           <script type="text/javascript">
             hideEditableField('bz_qa_contact_edit_container', 
@@ -512,7 +520,7 @@
         [% ELSE %]
           [% bug.bug_file_loc FILTER html %]
         [% END %]
-        (<a href="#" id="bz_url_edit_action">edit</a>)</span>
+        (<a href="#" id="bz_url_edit_action">editar</a>)</span>
       [% END %]
       <span id="bz_url_input_area">
         [% url_output = INCLUDE input no_td = 1 inputname = "bug_file_loc" size = 40 %]
@@ -575,7 +583,7 @@
   [% RETURN UNLESS bug.duplicates.size %]
   <tr>
     <th class="field_label">
-      <label>Duplicates ([% bug.duplicates.size %])</label>:
+      <label>Duplicados ([% bug.duplicates.size %])</label>:
     </th>
     <td class="field_value">
       <span id="duplicates">
@@ -584,7 +592,7 @@
         [% END %]
       </span>
       (<a href="buglist.cgi?bug_id=[% bug.duplicate_ids.join(",") FILTER html %]">
-       [%-%]view as [% terms.bug %] list</a>)
+       [%-%]ver como lista de [% terms.bug %]</a>)
     </td>
   </tr>
 [% END %]
@@ -609,11 +617,12 @@
       <th>&nbsp;</th>
 
       <td id="show_dependency_tree_or_graph">
-        Show dependency <a href="showdependencytree.cgi?id=[% bug.bug_id %]&amp;hide_resolved=1">tree</a>
+        Mostrar <a href="showdependencytree.cgi?id=[% bug.bug_id %]&amp;hide_resolved=1">&aacute;rbol</a> 
 
         [% IF Param('webdotbase') %]
-          /&nbsp;<a href="showdependencygraph.cgi?id=[% bug.bug_id %]">graph</a>
+          /&nbsp;<a href="showdependencygraph.cgi?id=[% bug.bug_id %]">gr&aacute;fico</a>
         [% END %]
+        de dependencias
       </td>
     </tr>
   [% END %]
@@ -641,11 +650,11 @@
       [% IF NOT emitted_description %]
         [% emitted_description = 1 %]
           <div id="bz_restrict_group_visibility_help">
-            <b>Only users in
-              [%+ IF Param('or_groups') %]at least one[% ELSE %]all[% END %]
-              of the selected groups can view this [% terms.bug %]:</b>
+            <b>Solo usuarios en
+              [%+ IF Param('or_groups') %]al menos uno[% ELSE %]todos[% END %]
+              los grupos seleccionados pueden ver este [% terms.bug %]:</b>
              <p class="instructions">
-               Unchecking all boxes makes this a more public [% terms.bug %].
+               Deschequear todas las casillas hacen este [% terms.bug %] m&aacute;s p&uacute;blico.
              </p>
           </div>
       [% END %]
@@ -724,20 +733,20 @@
 [% BLOCK section_dates %]
   <tr>
     <th class="field_label">
-      Reported:
+      Reportado:
     </th>
     <td>
-     [% bug.creation_ts FILTER time("%Y-%m-%d %H:%M %Z") %] by [% INCLUDE global/user.html.tmpl who = bug.reporter %]
+     [% bug.creation_ts FILTER time("%Y-%m-%d %H:%M %Z") %] por [% INCLUDE global/user.html.tmpl who = bug.reporter %]
     </td>
   </tr>
   
   <tr>
     <th class="field_label">
-      Modified:
+      Modificado:
     </th>
     <td>
       [% bug.delta_ts FILTER time("%Y-%m-%d %H:%M %Z") %]
-      (<a href="show_activity.cgi?id=[% bug.bug_id %]">[%# terms.Bug %]History</a>)
+      (<a href="show_activity.cgi?id=[% bug.bug_id %]">Historia del [% terms.Bug %]</a>)
     </td>
   
   </tr>
@@ -750,7 +759,7 @@
     <tr>
       <th class="field_label">
         <label [% IF user.id %]for="newcc"[% END %] accesskey="a">
-          CC List:
+          Lista CC:
         </label>
       </th>
       <td>
@@ -761,24 +770,24 @@
                    IF user.settings.state_addselfcc.value == 'always'
                       || (!bug.user.has_any_role
                           && user.settings.state_addselfcc.value == 'cc_unless_role') %]>
-            <label for="addselfcc">Add me to CC list</label>
+            <label for="addselfcc">Agregarme a la Lista CC</label>
             <br> 
           [% END %]
         [% END %]
         [% bug.cc.size FILTER html %] 
         [% IF bug.cc.size == 1 %]
-          user
+          usuario
         [% ELSE %]
-          users
+          usuarios
         [% END %]
         [% IF user.id %]
           [% IF bug.cc.contains( user.email ) %]
-            including you
+            incluy&eacute;ndote a ti
           [% END %]
         [% END %]
         [% IF user.id || bug.cc.size %]
           <span id="cc_edit_area_showhide_container" class="bz_default_hidden">
-            (<a href="#" id="cc_edit_area_showhide">[% IF user.id %]edit[% ELSE %]show[% END %]</a>)
+            (<a href="#" id="cc_edit_area_showhide">[% IF user.id %]editar[% ELSE %]mostrar[% END %]</a>)
           </span>
         [% END %]
         <div id="cc_edit_area">
@@ -811,9 +820,9 @@
               <input type="checkbox" id="removecc" name="removecc">
               <label for="removecc">
                 [% IF bug.user.canedit %]
-                  Remove selected CCs
+                  Eliminar CCs seleccionados
                 [% ELSE %]
-                  Remove me from the CC list
+                  Eliminarme de la Lista CC
                 [% END %]
               </label>
               <br>
@@ -840,16 +849,16 @@
   [% IF user.id %]
     <tr>
       <th class="field_label">
-        <label for="bug_ignored" title="Ignore all email for this [% terms.bug %]">
-          Ignore [% terms.Bug %] Mail:
+        <label for="bug_ignored" title="Ignorar todos los email para este [% terms.bug %]">
+          Ignorar Mail del [% terms.Bug %]:
         </label>
       </th>
       <td>
         <input type="hidden" name="defined_bug_ignored" value="1">
-        <span title="You will still receive emails for flag requests directed at you.">
+        <span title="Seguir&aacute;s recibiendo mensajes de correo electr&oacute;nico para solicitudes dirigidas a ti.">
           <input type="checkbox" name="bug_ignored" id="bug_ignored" value="1"
                  [% ' checked="checked"' IF user.is_bug_ignored(bug.id) %]>
-          (never email me about this [% terms.bug %])
+          (nunca enviarme email acerca de este [% terms.bug %])
         </span>
       </td>
     </tr>
@@ -882,12 +891,12 @@
       [% END %]
       [% IF bug.check_can_change_field('alias', 0, 1) %]
         <span id="alias_edit_area_showhide_container" class="bz_default_hidden">
-          (<a href="#" id="alias_edit_area_showhide">edit</a>)
+          (<a href="#" id="alias_edit_area_showhide">editar</a>)
         </span>
         <br>
         <div id="alias_edit_area">
           <div>
-            <label for="newalias" class="field_label">Add</label>
+            <label for="newalias" class="field_label">Agregar</label>
             <br>
             <input name="newalias" id="newalias" size="20">
           </div>
@@ -900,7 +909,7 @@
             <br>
 
             <input type="checkbox" id="removealias" name="removealias">
-            <label for="removealias">Remove selected aliases</label>
+            <label for="removealias">Eliminar alias seleccionados</label>
           [% END %]
         </div>
         <script type="text/javascript">
@@ -1032,7 +1041,7 @@
     [% IF bug.check_can_change_field(field.name, 0, 1) %]
       <span id="[% field.name FILTER html %]_edit_container" 
             class="edit_me bz_default_hidden">
-        (<a href="#" id="[% field.name FILTER html %]_edit_action">edit</a>)
+        (<a href="#" id="[% field.name FILTER html %]_edit_action">editar</a>)
       </span>
       <script type="text/javascript">
         hideEditableField('[% field.name FILTER js %]_edit_container', 
@@ -1114,8 +1123,8 @@
     <tr>
       <td colspan="7" class="bz_summarize_time">
         <a href="summarize_time.cgi?id=[% bug.bug_id %]&amp;do_depends=1">
-        Summarize time (including time for [% terms.bugs %]
-        blocking this [% terms.bug %])</a>
+        Resumir tiempo (incluyendo el tiempo para los [% terms.bugs %]
+        bloqueando este [% terms.bug %])</a>
       </td>
     </tr>
   </table> 
@@ -1128,8 +1137,8 @@
 [% BLOCK comment_box %]
   <div id="add_comment" class="bz_section_additional_comments">
     [% IF user.id %]
-      <label for="comment" accesskey="c"><b>Additional 
-        <u>C</u>omments</b></label>:
+      <label for="comment" accesskey="c"><b> 
+        <u>C</u>omentarios Adicionales</b></label>:
 
       [% IF user.is_insider && bug.check_can_change_field('longdesc', 0, 1) %]
         <input type="checkbox" name="comment_is_private" value="1"
@@ -1166,7 +1175,7 @@
         <table id="bug_status_bottom" class="status">
           <tr>
             <th class="field_label">
-              <a href="page.cgi?id=fields.html#bug_status">Status</a>:
+              <a href="page.cgi?id=fields.html#bug_status">Estado</a>:
             </th>
             <td>
               [% PROCESS bug/knob.html.tmpl %]
@@ -1181,11 +1190,11 @@
         <tr>
           <td>
             <fieldset>
-              <legend>Note</legend>
-              You need to
+              <legend>Nota</legend>
+              Es necesario
               <a href="show_bug.cgi?id=
-                      [%- bug.bug_id %]&amp;GoAheadAndLogIn=1">log in</a>
-              before you can comment on or make changes to this [% terms.bug %].
+                      [%- bug.bug_id %]&amp;GoAheadAndLogIn=1">iniciar sesi&oacute;n</a>
+              antes de que pueda comentar o realizar cambios a este [% terms.bug %].
             </fieldset>
           </td>
         </tr> 
@@ -1253,7 +1262,7 @@
 [% BLOCK commit_button %]
   [% IF user.id %]
     <div class="knob-buttons">
-      <input type="submit" value="Save Changes" 
+      <input type="submit" value="Guardar Cambios" 
              id="commit[% id FILTER css_class_quote %]">
     </div>
   [% END %]

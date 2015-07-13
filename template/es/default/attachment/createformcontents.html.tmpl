@@ -4,6 +4,14 @@
   #
   # This Source Code Form is "Incompatible With Secondary Licenses", as
   # defined by the Mozilla Public License, v. 2.0.
+  #
+  # The Original Code is the Bugzilla Bug Tracking System.
+  #
+  # Contributor(s): Matias Iglesias <matiasiglesias@matiasiglesias.com.ar>
+  # Latest version of this Spanish localization template
+  # can be found at <http://github.com/matiasiglesias/bugzilla_es>
+  #
+  # Contributions are Welcome.
   #%]
 
 [% max_local = Param('maxlocalattachment') * 1024 %]
@@ -11,29 +19,29 @@
 <tr class="attachment_data">
   <th><label for="data">File</label>:</th>
   <td>
-    <em>Enter the path to the file on your computer</em> (or
+    <em>Introduzca la ruta de acceso al archivo en su computadora</em> (o
     <a id="attachment_data_controller" href="javascript:TUI_toggle_class('attachment_text_field');
                                              javascript:TUI_toggle_class('attachment_data')"
-    >paste text as attachment</a>).<br>
+    >pegar texto como archivo adjunto</a>).<br>
     <input type="file" id="data" name="data" size="50" onchange="DataFieldHandler()">
-    <br><em>(File size limit: [% max_limit FILTER html %] KB)</em>
+    <br><em>(L&iacute;mite de tama&ntilde;o de archivo: [% max_limit FILTER html %] KB)</em>
   </td>
 </tr>
 <tr class="attachment_text_field">
-  <th><label for="attach_text">File</label>:</th>
+  <th><label for="attach_text">Archivo</label>:</th>
   <td>
-    <em>Paste the text to be added as an attachment</em> (or
+    <em>Pegue el texto que se a&ntilde;ade como un archivo adjunto</em> (para
     <a id="attachment_text_field_controller" href="javascript:TUI_toggle_class('attachment_text_field');
                                                    javascript:TUI_toggle_class('attachment_data')"
-    >attach a file</a>).<br>
+    >adjuntar un archivo</a>).<br>
     <textarea id="attach_text" name="attach_text" cols="80" rows="15"
               onkeyup="TextFieldHandler()" onblur="TextFieldHandler()"></textarea>
   </td>
 </tr>
 <tr>
-  <th class="required"><label for="description">Description</label>:</th>
+  <th class="required"><label for="description">Descripcio&oacute;n</label>:</th>
   <td>
-    <em>Describe the attachment briefly.</em><br>
+    <em>Decriba brevemente el archivo adjunto.</em><br>
     <input type="text" id="description" name="description" class="required"
            size="60" maxlength="200">
   </td>
@@ -41,10 +49,10 @@
 <tr[% ' class="expert_fields"' UNLESS bug.id %]>
   <th>Content Type:</th>
   <td>
-    <em>If the attachment is a patch, check the box below.</em><br>
+    <em>Si el archivo adjunto es un parche por favor crequee la casilla de abajo.</em><br>
     <input type="checkbox" id="ispatch" name="ispatch" value="1"
            onchange="setContentTypeDisabledState(this.form);">
-    <label for="ispatch">patch</label><br><br>
+    <label for="ispatch">parche</label><br><br>
     [%# Reset this whenever the page loads so that the JS state is up to date %]
     <script type="text/javascript">
       YAHOO.util.Event.onDOMReady(function() {
@@ -52,20 +60,20 @@
       });
     </script>
 
-    <em>Otherwise, choose a method for determining the content type.</em><br>
+    <em>De lo contrario, seleccione un m&eacute;todo para deterinar el tipo de contenido.</em><br>
     <input type="radio" id="autodetect"
            name="contenttypemethod" value="autodetect" checked="checked">
-      <label for="autodetect">auto-detect</label><br>
+      <label for="autodetect">autom&aacute;tico</label><br>
     <input type="radio" id="list"
            name="contenttypemethod" value="list">
-      <label for="list">select from list</label>:
+      <label for="list">seleccionar de una lista</label>:
       <select name="contenttypeselection" id="contenttypeselection"
               onchange="this.form.contenttypemethod[1].checked = true;">
         [% PROCESS content_types %]
       </select><br>
     <input type="radio" id="manual"
                  name="contenttypemethod" value="manual">
-      <label for="manual">enter manually</label>:
+      <label for="manual">Ingresar manualmente</label>:
       <input type="text" name="contenttypeentry" id="contenttypeentry"
              size="30" maxlength="200"
              onchange="if (this.value) this.form.contenttypemethod[2].checked = true;">
@@ -81,14 +89,14 @@
 </tr>
 
 [% BLOCK content_types %]
-  [% mimetypes = [{type => "text/plain", desc => "plain text"},
-                  {type => "text/html",  desc => "HTML source"},
-                  {type => "application/xml", desc => "XML source"},
-                  {type => "image/gif",  desc => "GIF image"},
-                  {type => "image/jpeg", desc => "JPEG image"},
-                  {type => "image/png",  desc => "PNG image"},
-                  {type => "application/pdf", desc => "PDF document"},
-                  {type => "application/octet-stream", desc => "binary file"}]
+  [% mimetypes = [{type => "text/plain", desc => "Texto plano"},
+                  {type => "text/html",  desc => "Texto HTML"},
+                  {type => "application/xml", desc => "Archivo XML"},
+                  {type => "image/gif",  desc => "Imagen GIF"},
+                  {type => "image/jpeg", desc => "Imagen JPEG"},
+                  {type => "image/png",  desc => "Imagen PNG"},
+                  {type => "application/pdf", desc => "documento PDF"},
+                  {type => "application/octet-stream", desc => "archivo binario"}]
   %]
   [% Hook.process("mimetypes", "attachment/createformcontents.html.tmpl") %]
 

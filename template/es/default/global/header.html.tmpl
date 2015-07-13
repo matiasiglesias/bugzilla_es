@@ -4,6 +4,14 @@
   #
   # This Source Code Form is "Incompatible With Secondary Licenses", as
   # defined by the Mozilla Public License, v. 2.0.
+  #
+  # The Original Code is the Bugzilla Bug Tracking System.
+  #
+  # Contributor(s): Matias Iglesias <matiasiglesias@matiasiglesias.com.ar>
+  # Latest version of this Spanish localization template
+  # can be found at <http://github.com/matiasiglesias/bugzilla_es>
+  #
+  # Contributions are Welcome.
   #%]
 
 [%# INTERFACE:
@@ -78,7 +86,7 @@
 [% IF !header.defined %][% header = title %][% END %]
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
   <head>
     [% Hook.process("start") %]
     <title>[% title %]</title>
@@ -167,15 +175,15 @@
                 [%# Please keep these in alphabetical order. %]
 
                 attach_desc_required:
-                    "You must enter a Description for this attachment.",
+                    "Tiene que introducir una descripci&oacute;n para este adjunto.",
                 component_required:
-                    "You must select a Component for this [% terms.bug %].",
+                    "Tiene que seleccionar un componente para este [% terms.bug %].",
                 description_required:
-                    "You must enter a Description for this [% terms.bug %].",
+                    "Tiene que introducir una descripci&oacute;n para este [% terms.bug %].",
                 short_desc_required:
-                    "You must enter a Summary for this [% terms.bug %].",
+                    "Tiene que introducir un resumen para este [% terms.bug %].",
                 version_required:
-                    "You must select a Version for this [% terms.bug %]."
+                    "Tiene que seleccionar una versi&oacute;n para este [% terms.bug %]."
             }
             [% IF generate_api_token %]
               , api_token: '[% get_api_token FILTER js FILTER html %]'

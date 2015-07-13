@@ -4,6 +4,14 @@
   #
   # This Source Code Form is "Incompatible With Secondary Licenses", as
   # defined by the Mozilla Public License, v. 2.0.
+  #
+  # The Original Code is the Bugzilla Bug Tracking System.
+  #
+  # Contributor(s): Matias Iglesias <matiasiglesias@matiasiglesias.com.ar>
+  # Latest version of this Spanish localization template
+  # can be found at <http://github.com/matiasiglesias/bugzilla_es>
+  #
+  # Contributions are Welcome.
   #%]
 
 [%# INTERFACE:
@@ -12,17 +20,17 @@
   #%]
 
 [% IF target == "enter_bug.cgi" %]
-  [% title = "Enter $terms.Bug" %]
-  [% subheader = "Select Classification" %]
+  [% title = "Nuevo $terms.Bug" %]
+  [% subheader = "Seleccionar Clasificaci&oacute;n" %]
 [% END %]
 
-[% DEFAULT title = "Choose the classification" %]
+[% DEFAULT title = "Seleccione la clasificaci&oacute;n" %]
 [% PROCESS global/header.html.tmpl %]
 
 [% USE Bugzilla %]
 [% previous_params = Bugzilla.cgi.canonicalise_query('classification') %]
 
-<h2>First, you must pick a classification on which to enter [% terms.abug %]:</h2>
+<h2>Primero, deber&aacute; elegir el producto para cual desea registrar el [% terms.abug %]:</h2>
 <table id="choose_classification">
   <tr>
     <th class="right">
@@ -31,7 +39,7 @@
       All</a>:
     </th>
 
-    <td>Show all products</td>
+    <td>Mostrar todos los Productos</td>
   </tr>
   <tr>
     <th colspan="2">&nbsp;</th>

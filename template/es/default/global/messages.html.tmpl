@@ -4,6 +4,14 @@
   #
   # This Source Code Form is "Incompatible With Secondary Licenses", as
   # defined by the Mozilla Public License, v. 2.0.
+  #
+  # The Original Code is the Bugzilla Bug Tracking System.
+  #
+  # Contributor(s): Matias Iglesias <matiasiglesias@matiasiglesias.com.ar>
+  # Latest version of this Spanish localization template
+  # can be found at <http://github.com/matiasiglesias/bugzilla_es>
+  #
+  # Contributions are Welcome.
   #%]
 
 [%# This is a list of all the possible messages. Please keep them in
@@ -14,192 +22,193 @@
 
 [% message = BLOCK %]
   [% IF    message_tag == "account_created" %]
-    The user account [% otheruser.login FILTER html %] has been created
-    successfully.
+    La cuenta de usuario [% otheruser.login FILTER html %] se ha creado 
+    correctamente.
     [% IF groups.size %]
-      You may want to edit the group settings now, using the form below.
+      Puede querer editar las opciones de grupo ahora, usando el formulario de abajo.
     [% END %]
 
   [% ELSIF message_tag == "account_creation_canceled" %]
-    [% title = "User Account Creation Canceled" %]
-    The creation of the user account [% account FILTER html %] has been
-    canceled.
+    [% title = "Creaci&oacute;n de Cuenta de Usuario Cancelada" %]
+    La creación de la cuenta de usuario [% account FILTER html %] ha sido
+    cancelada.
 
   [% ELSIF message_tag == "account_updated" %]
     [% IF changes.size %]
-      [% title = "User $loginold updated" %]
-      The following changes have been made to the user account
+      [% title = "Usuario $loginold actualizado" %]
+      Los siguientes cambios han sido realizados a la cuenta de usuario
       [%+ loginold FILTER html %]:
       <ul>
         [% FOREACH field = changes.keys %]
           <li>
             [% IF    field == 'login_name' %]
-              The login is now [% otheruser.login FILTER html %].
+              El nombre de usuario es ahora [% otheruser.login FILTER html %].
             [% ELSIF field == 'realname' %]
-              The real name has been updated.
+              Se ha actualizado el nombre verdadero.
             [% ELSIF field == 'cryptpassword' %]
-              A new password has been set.
+              Se ha establecido una nueva contrase&ntilde;a.
             [% ELSIF field == 'disabledtext' %]
-              The "login disabled" text has been modified.
+              El texto de 'deshabilitar inicio de sesi&oacute;n' ha sido modificado.
             [% ELSIF field == 'is_enabled' %]
-              Logging in with this user account has been [% otheruser.is_enabled ? 'enabled' : 'disabled' %].
+              Inicio de sesi&oacute;n con esta cuenta ha sido [% otheruser.is_enabled ? 'habilitado' : 'deshabilitado' %].
             [% ELSIF field == 'extern_id' %]
-              The user's External Login ID has been modified.
+              Se ha modificado el ID de login externo del usuario.
             [% ELSIF field == 'disable_mail' %]
               [% IF otheruser.email_disabled %]
-                [% terms.Bug %]mail has been disabled.
+                [% terms.Bug %]mail ha sido desactivado.
               [% ELSE %]
-                [% terms.Bug %]mail has been enabled.
+                [% terms.Bug %]mail ha sido activado.
               [% END %]
             [% ELSIF field == 'groups' %]
               [% IF changes.groups.1.size %]
-                The account has been added to the
+                La cuenta se ha a&ntilde;adido al
                 [%+ changes.groups.1.join(', ') FILTER html %]
-                group[% 's' IF changes.groups.1.size > 1 %].
+                grupo[% 's' IF changes.groups.1.size > 1 %].
               [% END %]
               [% IF changes.groups.0.size %]
-                The account has been removed from the
+                La cuenta se ha eliminado del
                 [%+ changes.groups.0.join(', ') FILTER html %]
-                group[% 's' IF changes.groups.0.size > 1 %].
+                grupo[% 's' IF changes.groups.0.size > 1 %].
               [% END %]
             [% ELSIF field == 'bless_groups' %]
               [% IF changes.bless_groups.1.size %]
-                The account has been granted rights to bless the
+                La cuenta ha obtenido permiso para bendecir al
                 [%+ changes.bless_groups.1.join(', ') FILTER html %]
-                group[% 's' IF changes.bless_groups.1.size > 1 %].
+                grupo[% 's' IF changes.bless_groups.1.size > 1 %].
               [% END %]
               [% IF changes.bless_groups.0.size %]
-                The account has been denied rights to bless the
+                Se ha denegado el permiso para la cuenta para bendecir al
                 [%+ changes.bless_groups.0.join(', ') FILTER html %]
-                group[% 's' IF changes.bless_groups.0.size > 1 %].
+                grupo[% 's' IF changes.bless_groups.0.size > 1 %].
               [% END %]
             [% END %]
           </li>
         [% END %]
       </ul>
     [% ELSE %]
-      [% title = "User $otheruser.login not changed" %]
-      You didn't request any changes to the user's account
+      [% title = "El usuario $otheruser.login no ha cambiado" %]
+      No ha solicitado ning&uacute;n cambio en la cuenta del usuario
       [%+ otheruser.login FILTER html %].
     [% END %]
 
   [% ELSIF message_tag == "account_deleted" %]
     [% title = "User $otheruser.login deleted" %]
-    The user account [% otheruser.login FILTER html %] has been deleted
-    successfully.
+    La cuenta del usuario [% otheruser.login FILTER html %] ha sido eliminada
+    correctamente.
 
   [% ELSIF message_tag == "account_disabled" %]
-    Logging in with this user account [% account FILTER html %] is disabled, so
-    you cannot change its password.
+    La cuenta del usuario [% account FILTER html %] est&aacute; desactivada, as&iacute; que
+    no se puede cambiar la contrase&ntilde;a.
 
   [% ELSIF message_tag == "attachment_creation_failed" %]
-    The [% terms.bug %] was created successfully, but attachment creation
-    failed.
-    Please add your attachment by clicking the "Add an Attachment" link
-    below.
+    El [% terms.bug %] se ha creado correctamente, pero la creación del adjunto
+    falló.
+    or favor, añada su adjnto pulsando el enlace "Añadir un adjunto" que hay
+    debajo.
 
   [% ELSIF message_tag == "bug_group_description" %]
-    Access to [% terms.bugs %] in the [% product.name FILTER html %] product
+    Acceso a los [% terms.bugs %] en el producto [% product.name FILTER html %]
 
   [% ELSIF message_tag == "buglist_adding_field" %]
-    [% title = "Adding field to search page..." %]
-    [% link  = "Click here if the page does not redisplay automatically." %]
+    [% title = "Añadiendo el campo a la página de búsquedas..." %]
+    [% link  = "Pulse aquí si la página no se recarga automáticamente." %]
 
   [% ELSIF message_tag == "buglist_updated_named_query" %]
-    [% title = "Search updated" %]
-    Your search named <code><a 
+    [% title = "Se ha actualizado la búsqueda" %]
+    Su búsqueda <code><a 
      href="buglist.cgi?cmdtype=runnamed&amp;namedcmd=[% queryname FILTER uri %]"
-    >[% queryname FILTER html %]</a></code> has been updated.
+    >[% queryname FILTER html %]</a></code> ha sido actualizada.
 
   [% ELSIF message_tag == "buglist_new_default_query" %]
-    OK, you now have a new default search.  You may
-    also bookmark the result of any individual search.
+    De acuerdo, ahora tiene una nueva búsqueda predeterminada. 
+    También puede añadir a sus marcadores el resultado de 
+    cualquier búsqueda individual.
 
   [% ELSIF message_tag == "buglist_new_named_query" %]
-    [% title = "Search created" %]
-    OK, you have a new search named <code><a
+    [% title = "Se ha creado la búsqueda" %]
+    De acuerdo, ha creado una nueva búsqueda llamada <code><a
      href="buglist.cgi?cmdtype=runnamed&amp;namedcmd=[% queryname FILTER uri %]"
     >[% queryname FILTER html %]</a></code>.
 
   [% ELSIF message_tag == "buglist_query_gone" %]
-    [% title = "Search is gone" %]
-    [% link  = "Un-forget the search" %]
-    OK, the <b>[% namedcmd FILTER html %]</b> search is gone.
+    [% title = "La búsqueda ya no está" %]
+    [% link  = "Deshacer olvidar la búsqueda." %]
+    De acuerdo, la búsqueda <b>[% namedcmd FILTER html %]</b> ya no está.
 
   [% ELSIF message_tag == "buglist_sorted_by_relevance" %]
-    [% terms.Bugs %] on this list are sorted by relevance, with the most
-    relevant [% terms.bugs %] at the top.
+    Los [% terms.Bugs %] de esta lista están ordenados por relevancia, 
+    con los más relevantes al principio.
 
   [% ELSIF message_tag == "change_columns" %]
-    [% title = "Change columns" %]
-    Resubmitting your search with new columns...
-    Click <a href="[% redirect_url FILTER html %]">here</a>
-    if the page does not automatically refresh.
+    [% title = "Cambiar columnas" %]
+    Enviando de nuevo la búsqueda con las nuevas columnas...
+    Pulse <a href="[% redirect_url FILTER html %]">aquí</a>
+    si la página no se refresca automáticamente.
 
   [% ELSIF message_tag == "classification_created" %]
-    [% title = "New Classification Created" %]
-    The <em>[% classification.name FILTER html %]</em> classification has been created.
+    % title = "Nueva clasificación creada" %]
+    La clasificación <em>[% classification.name FILTER html %]</em> ha sido creada.
 
   [% ELSIF message_tag == "classification_deleted" %]
-    [% title = "Classification Deleted" %]
-    The <em>[% classification.name FILTER html %]</em> classification has been deleted.
+    [% title = "Clasificación borrada" %]
+    La clasificación <em>[% classification.name FILTER html %]</em> ha sido borrada.
 
   [% ELSIF message_tag == "classification_updated" %]
     [% title = "Classification Updated" %]
     [% IF changes.keys.size %]
-      Changes to the <em>[% classification.name FILTER html %]</em> classification
-      have been saved:
+      Los cambios a la clasificación <em>[% classification.name FILTER html %]</em> 
+      han sido guardados:
       <ul>
         [% IF changes.name.defined %]
-          <li>Name updated to '[% classification.name FILTER html %]'</li>
+          <li>El nombre se ha actualizado a '[% classification.name FILTER html %]'</li>
         [% END %]
         [% IF changes.description.defined %]
           [% IF classification.description %]
-            <li>Description updated to '[% classification.description FILTER html %]'</li>
+            <li>la descripción se ha actualizado a '[% classification.description FILTER html %]'</li>
           [% ELSE %]
-            <li>Description removed</li>
+            <li>La descripción ha sido eliminada</li>
           [% END %]
         [% END %]
         [% IF changes.sortkey.defined %]
-          <li>Sortkey updated to '[% classification.sortkey FILTER html %]'</li>
+          <li>La clave de orden se ha actualizado a '[% classification.sortkey FILTER html %]'</li>
         [% END %]
         [% Hook.process('classification_updated_fields') %]
       </ul>
     [% ELSE %]
-      No changes made to <em>[% classification.name FILTER html %]</em>.
+      No se han realizado cambios a <em>[% classification.name FILTER html %]</em>.
     [% END %]
 
   [% ELSIF message_tag == "component_created" %]
-    [% title = "Component Created" %]
-    The component <em>[% comp.name FILTER html %]</em> has been created.
+    [% title = "Componente creado" %]
+    El componente <em>[% comp.name FILTER html %]</em> ha sido creado.
 
   [% ELSIF message_tag == "component_deleted" %]
-    [% title = "Component Deleted" %]
-    The component <em>[% comp.name FILTER html %]</em> has been deleted.
+    % title = "Componente eliminado" %]
+    El componente <em>[% comp.name FILTER html %]</em> ha sido eliminado.
     [% IF comp.bug_count %]
-      All [% terms.bugs %] being in this component and all references
-      to them have also been deleted.
+      Todos los [% terms.bugs %] que estaban en este componente y todas las referencias
+      a ellos también se han borrado.
     [% END %]
 
   [% ELSIF message_tag == "component_updated" %]
-    [% title = "Component Updated" %]
+    [% title = "Componente actualizado" %]
     [% IF changes.keys.size %]
-      Changes to the component <em>[% comp.name FILTER html %]</em> have been saved:
+      Los cambios al componente <em>[% comp.name FILTER html %]</em> han sido guardados:
       <ul>
       [% IF changes.name.defined %]
-        <li>Name updated to '[% comp.name FILTER html %]'</li>
+        <li>El nombre se ha actualizado a '[% comp.name FILTER html %]'</li>
       [% END %]
       [% IF changes.description.defined %]
-        <li>Description updated to '[% comp.description FILTER html_light %]'</li>
+        <li>a descripción se ha actualizado a [% comp.description FILTER html_light %]'</li>
       [% END %]
       [% IF changes.initialowner.defined %]
-        <li>Default assignee updated to '[% comp.default_assignee.login FILTER html %]'</li>
+        <li>El asignado predeterminado se ha actualizado a '[% comp.default_assignee.login FILTER html %]'</li>
       [% END %]
       [% IF changes.initialqacontact.defined %]
         [% IF comp.default_qa_contact %]
-          <li>Default QA contact updated to '[% comp.default_qa_contact.login FILTER html %]'</li>
+          <li>El contacto QA predeterminado se ha actualizado a  '[% comp.default_qa_contact.login FILTER html %]'</li>
         [% ELSE %]
-          <li>Default QA contact deleted</li>
+          <li>El contacto QA predeterminado ha sido eliminado</li>
         [% END %]
       [% END %]
       [% IF changes.cc_list.defined %]
@@ -208,40 +217,40 @@
           [% FOREACH cc_user = comp.initial_cc %]
             [% cc_list.push(cc_user.login) %]
           [% END %]
-          <li>Default CC list updated to [% cc_list.join(", ") FILTER html %]</li>
+          <li>La lista CC predeterminada se ha actualizado a  [% cc_list.join(", ") FILTER html %]</li>
         [% ELSE %]
-          <li>Default CC list deleted</li>
+          <li>La lista CC predeterminada se ha eliminado</li>
         [% END %]
       [% END %]
       [% IF changes.isactive.defined %]
-        <li>[% comp.is_active ? "Enabled" : "Disabled" %] for [% terms.bugs %]</li>
+        <li>[% comp.is_active ? "Activado" : "Desactivado" %] para [% terms.bugs %]</li>
       [% END %]
       [% Hook.process('component_updated_fields') %]
       </ul>
     [% ELSE %]
-      No changes made to <em>[% comp.name FILTER html %]</em>.
+      No se han realizado cambios a <em>[% comp.name FILTER html %]</em>.
     [% END %]
 
   [% ELSIF message_tag == "custom_field_created" %]
-    [% title = "Custom Field Created" %]
-    The new custom field '[% field.name FILTER html %]' has been
-    successfully created.
+    [% title = "Campo personalizado creado" %]
+    El nuevo campo personalizado '[% field.name FILTER html %]' se ha creado
+    correctamente.
 
   [% ELSIF message_tag == "custom_field_deleted" %]
-    [% title = "Custom Field Deleted" %]
-    The custom field '[% field.name FILTER html %]' has been
-    successfully deleted.
+    [% title = "Campo personalizado borrado" %]
+    El campo personalizado '[% field.name FILTER html %]' se ha eliminado
+    correctamente.
 
   [% ELSIF message_tag == "custom_field_updated" %]
-    [% title = "Custom Field Updated" %]
-    Properties of the '[% field.name FILTER html %]' field have been
-    successfully updated.
+    [[% title = "Campo personalizado actualizado" %]
+    Las propiedades del campo '[% field.name FILTER html %]' han sido
+    actualizadas correctamente.
 
   [% ELSIF message_tag == "default_settings_updated" %]
     [% IF changes_saved %]
-      Changes to default preferences have been saved.
+      Los cambios a las preferencias predeterminadas se han guardado.
     [% ELSE %]
-      No changes made.
+      No se han hecho cambios.
     [% END %]
 
   [% ELSIF message_tag == "emailold_change_canceled" %]

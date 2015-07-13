@@ -4,16 +4,24 @@
   #
   # This Source Code Form is "Incompatible With Secondary Licenses", as
   # defined by the Mozilla Public License, v. 2.0.
+  #
+  # The Original Code is the Bugzilla Bug Tracking System.
+  #
+  # Contributor(s): Matias Iglesias <matiasiglesias@matiasiglesias.com.ar>
+  # Latest version of this Spanish localization template
+  # can be found at <http://github.com/matiasiglesias/bugzilla_es>
+  #
+  # Contributions are Welcome.
   #%]
 
 [% DEFAULT qs_suffix = "" %]
 [% USE Bugzilla %]
 
 <ul class="links">
-  <li><a href="./">Home</a></li>
-  <li><span class="separator">| </span><a href="enter_bug.cgi">New</a></li>
-  <li><span class="separator">| </span><a href="describecomponents.cgi">Browse</a></li>
-  <li><span class="separator">| </span><a href="query.cgi">Search</a></li>
+  <li><a href="./">Inicio</a></li>
+  <li><span class="separator">| </span><a href="enter_bug.cgi">Nuevo</a></li>
+  <li><span class="separator">| </span><a href="describecomponents.cgi">Explorar</a></li>
+  <li><span class="separator">| </span><a href="query.cgi">Buscar</a></li>
 
   <li class="form">
     <span class="separator">| </span>
@@ -29,22 +37,22 @@
       }
     </script>
     <input class="txt" type="text" id="quicksearch[% qs_suffix FILTER html %]" name="quicksearch" 
-           title="Quick Search" value="[% quicksearch FILTER html %]">
-    <input class="btn" type="submit" value="Search" 
+           title="B&uacute;squeda r&aacute;pida" value="[% quicksearch FILTER html %]">
+    <input class="btn" type="submit" value="Buscar" 
            id="find[% qs_suffix FILTER html %]">
     [%-# Work around FF bug: keep this on one line %]</form>
-  <a href="page.cgi?id=quicksearch.html" title="Quicksearch Help">[?]</a></li>
+  <a href="page.cgi?id=quicksearch.html" title="Ayuda de B&uacute;squeda r&aacute;pida">[?]</a></li>
 
-  <li><span class="separator">| </span><a href="report.cgi">Reports</a></li>
+  <li><span class="separator">| </span><a href="report.cgi">Reportes</a></li>
 
   <li>
     [% IF Param('shutdownhtml') || Bugzilla.has_flags %]
       <span class="separator">| </span>
       [% IF user.id %]
         <a href="request.cgi?requester=[% user.login FILTER uri %]&amp;requestee=
-                 [% user.login FILTER uri %]&amp;do_union=1&amp;group=type&amp;action=queue">My Requests</a>
+                 [% user.login FILTER uri %]&amp;do_union=1&amp;group=type&amp;action=queue">Mis Peticiones</a>
       [% ELSE %]
-        <a href="request.cgi">Requests</a>
+        <a href="request.cgi">Peticiones</a>
       [% END %]
     [% END %]
   [%-# Work around FF bug: keep this on one line %]</li>
@@ -52,9 +60,9 @@
   [% Hook.process('action-links') %]
 
   [% IF user.login %]
-    <li><span class="separator">| </span><a href="userprefs.cgi">Preferences</a></li>
+    <li><span class="separator">| </span><a href="userprefs.cgi">Preferencias</a></li>
     [% IF user.can_administer %]
-      <li><span class="separator">| </span><a href="admin.cgi">Administration</a></li>
+      <li><span class="separator">| </span><a href="admin.cgi">Administraci&oacute;n</a></li>
     [% END %]
 
     [% PROCESS link_to_documentation %]
@@ -62,14 +70,14 @@
     <li>
       <span class="separator">| </span>
       [% IF user.authorizer.can_logout %]
-        <a href="index.cgi?logout=1">Log&nbsp;out</a>
+        <a href="index.cgi?logout=1">Cerrar&nbsp;sesi&oacute;n</a>
       [% ELSE %]
-        Logged&nbsp;in&nbsp;as
+        Sesi&oacute;n&nbsp;iniciada&nbsp;como
       [% END %]
       [% IF sudoer %]
-        [%+ sudoer.login FILTER html %] (<b>impersonating
+        [%+ sudoer.login FILTER html %] (<b>suplantando a
         [%+ user.login FILTER html %]</b>
-        <a href="relogin.cgi?action=end-sudo">end session</a>)
+        <a href="relogin.cgi?action=end-sudo">cerrar sesi&oacute;n</a>)
       [% ELSE %]
         [%+ user.login FILTER html %]
       [% END %]
@@ -82,7 +90,7 @@
           && user.authorizer.user_can_create_account %]
       <li id="new_account_container[% qs_suffix FILTER html %]">
         <span class="separator">| </span>
-        <a href="createaccount.cgi">New&nbsp;Account</a>
+        <a href="createaccount.cgi">Nueva&nbsp;Cuenta</a>
       </li>
     [% END %]
 
@@ -103,7 +111,7 @@
     [% IF doc_section %]
       <li>
         <span class="separator">| </span>
-        <a href="[% docs_urlbase _ doc_section FILTER html %]" target="_blank">Help</a>
+        <a href="[% docs_urlbase _ doc_section FILTER html %]" target="_blank">Ayuda</a>
       </li>
     [% END %]
 [% END %]

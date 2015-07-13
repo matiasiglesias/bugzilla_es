@@ -4,6 +4,14 @@
   #
   # This Source Code Form is "Incompatible With Secondary Licenses", as
   # defined by the Mozilla Public License, v. 2.0.
+  #
+  # The Original Code is the Bugzilla Bug Tracking System.
+  #
+  # Contributor(s): Matias Iglesias <matiasiglesias@matiasiglesias.com.ar>
+  # Latest version of this Spanish localization template
+  # can be found at <http://github.com/matiasiglesias/bugzilla_es>
+  #
+  # Contributions are Welcome.
   #%]
 
 [%# INTERFACE:
@@ -14,18 +22,18 @@
   #%]
 
 [% IF target == "enter_bug.cgi" %]
-  [% title = "Enter $terms.Bug" %]
-  [% subheader = "Select Product" %]
+  [% title = "Ingresar $terms.Bug" %]
+  [% subheader = "Seleccione Producto" %]
   [% h2 = BLOCK %]
-    [% IF Param('useclassification') %]Next[% ELSE %]First[% END %],
-    you must pick a product on which to enter [% terms.abug %]:
+    [% IF Param('useclassification') %]Siguiente[% ELSE %]Primero[% END %],
+    debe seleccionar un producto para ingresar el [% terms.abug %]:
   [% END %]
 [% ELSIF target == "describecomponents.cgi" %]
-  [% title = "Browse" %]
-  [% h2 = "Select a product category to browse:" %]
+  [% title = "Explorar" %]
+  [% h2 = "Seleccione una categoría de producto para explorar:" %]
 [% END %]
 
-[% DEFAULT title = "Choose a Product" %]
+[% DEFAULT title = "Seleccione un Producto" %]
 [% PROCESS global/header.html.tmpl %]
 
 [% USE Bugzilla %]

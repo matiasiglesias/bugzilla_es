@@ -4,6 +4,14 @@
   #
   # This Source Code Form is "Incompatible With Secondary Licenses", as
   # defined by the Mozilla Public License, v. 2.0.
+  #
+  # The Original Code is the Bugzilla Bug Tracking System.
+  #
+  # Contributor(s): Matias Iglesias <matiasiglesias@matiasiglesias.com.ar>
+  # Latest version of this Spanish localization template
+  # can be found at <http://github.com/matiasiglesias/bugzilla_es>
+  #
+  # Contributions are Welcome.
   #%]
 
 [% PROCESS bug/time.html.tmpl %]
@@ -15,7 +23,7 @@
 <!--
   /* Adds the reply text to the 'comment' textarea */
   function replyToComment(id, real_id, name) {
-      var prefix = "(In reply to " + name + " from comment #" + id + ")\n";
+      var prefix = "(En respuesta a " + name + " del comentario #" + id + ")\n";
       var replytext = "";
       [% IF user.settings.quote_replies.value == 'quoted_reply' %]
         /* pre id="comment_name_N" */
@@ -61,7 +69,7 @@
   <div class="bz_add_comment">
     <a href="#" 
        onclick="return goto_add_comments();">
-       Add Comment</a>
+       Agregar Comentario</a>
   </div>
 [% END %]
 
@@ -75,16 +83,16 @@
   [% IF mode == "edit" %]
     <ul class="bz_collapse_expand_comments">
       <li><a href="#" onclick="toggle_all_comments('collapse');
-                               return false;">Collapse All Comments</a></li>
+                               return false;">Colapsar Todos los Comentarios</a></li>
       <li><a href="#" onclick="toggle_all_comments('expand');
-                               return false;">Expand All Comments</a></li>
+                               return false;">Expandir Todos los Comentarios</a></li>
       [% IF Param('comment_taggers_group') %]
         <li><div id="comment_tags_collapse_expand_container"></div></li>
       [% END %]
       [% IF user.settings.comment_box_position.value == "after_comments" && user.id %]
         <li class="bz_add_comment"><a href="#" 
             onclick="return goto_add_comments('bug_status_bottom');">
-            Add Comment</a></li>
+            Agregar Comentario</a></li>
       [% END %]
     </ul>
   [% END %]
