@@ -4,10 +4,18 @@
   #
   # This Source Code Form is "Incompatible With Secondary Licenses", as
   # defined by the Mozilla Public License, v. 2.0.
+  #
+  # The Original Code is the Bugzilla Bug Tracking System.
+  #
+  # Contributor(s): Matias Iglesias <matiasiglesias@matiasiglesias.com.ar>
+  # Latest version of this Spanish localization template
+  # can be found at <http://github.com/matiasiglesias/bugzilla_es>
+  #
+  # Contributions are Welcome.
   #%]
 
 [% title = BLOCK %]
-  Administer your installation (Bugzilla
+  Administre su instalación (Bugzilla
   [%+ constants.BUGZILLA_VERSION FILTER html %])
 [% END %]
 
@@ -17,10 +25,10 @@
 %]
 
 <div>
-  This page is only accessible to empowered users. You can access administrative pages
-  from here (based on your privileges), letting you configure different aspects of
-  this installation. Note: some sections may not be accessible to you and are marked
-  using a lighter color.
+  Esta página sólo es accesible para los usuarios habilitados. Usted puede acceder a las 
+  páginas de administración desde aquí (en función de sus privilegios), permitiéndole configurar 
+  diferentes aspectos de ésta instalación. Nota: algunas secciones pueden no ser accesibles 
+  para usted y están marcados usando un color más claro.
 </div>
 
 <table>
@@ -28,52 +36,52 @@
     <td class="admin_links">
       <dl>
         [% class = user.in_group('tweakparams') ? "" : "forbidden" %]
-        <dt id="parameters" class="[% class %]"><a href="editparams.cgi">Parameters</a></dt>
-        <dd class="[% class %]">Set core parameters of the installation. That's the
-        place where you specify the URL to access this installation, determine how
-        users authenticate, choose which [% terms.bug %] fields to display, select
-        the mail transfer agent to send email notifications, choose which group of
-        users can use charts and share queries, and much more.</dd>
+        <dt id="parameters" class="[% class %]"><a href="editparams.cgi">Parámetros</a></dt>
+        <dd class="[% class %]">Establecer los parámetros fundamentales de la instalación. Ese es el
+        lugar donde se especifica la URL para acceder a esta instalación, determina cómo
+        se identifican los usuarios, elige qué campos de un [% terms.bug %] se muestran, selecciona
+        el agente de correo para enviar notificaciones, elige qué grupo de
+        usuarios puede usar gráficas y compartir consultas, y mucho más.</dd>
 
-        <dt id="preferences" class="[% class %]"><a href="editsettings.cgi">Default Preferences</a></dt>
-        <dd class="[% class %]">Set the default user preferences. These are the values
-        which will be used by default for all users. Users will be able to edit their
-        own preferences from the <a href="userprefs.cgi?tab=settings">Preferences</a>.</dd>
+        <dt id="preferences" class="[% class %]"><a href="editsettings.cgi">Preferencias Predeterminadas</a></dt>
+        <dd class="[% class %]">Establecer las preferencias predeterminadas de los usuarios. Estos son los valores
+        que se usarán por defecto para todos los usuarios. Los usuarios podrán editar sus
+        propias preferencias desde <a href="userprefs.cgi?tab=settings">Preferencias</a>.</dd>
 
         [% class = user.in_group('editcomponents') ? "" : "forbidden" %]
-        <dt id="sanitycheck" class="[% class %]"><a href="sanitycheck.cgi">Sanity Check</a></dt>
-        <dd class="[% class %]">Run sanity checks to locate problems in your database.
-        This may take several tens of minutes depending on the size of your installation.
-        You can also automate this check by running <kbd>sanitycheck.pl</kbd> from a cron job.
-        A notification will be sent per email to the specified user if errors are detected.</dd>
+        <dt id="sanitycheck" class="[% class %]"><a href="sanitycheck.cgi">Comprobación de Sanidad</a></dt>
+        <dd class="[% class %]">Ejecuta las comprobaciones de sanidad para localizar problemas en la base de datos.
+        Esto puede tardar varias decenas de minutos dependiendo del tamaño de su instalación.
+        También puede automatizar esta comprobación ejecutando <kbd>sanitycheck.pl</kbd> como una tarea programada.
+        Se enviará una notificación por correo al usuario especificado si se detectan errores.</dd>
 
-        [% class = (user.in_group('editusers') || user.can_bless) ? "" : "forbidden" %]
+        [% class = (user.in_group('editusers') || user.can_bless) ? "" : "prohibido" %]
         <dt id="users" class="[% class %]"><a href="editusers.cgi">Users</a></dt>
-        <dd class="[% class %]">Create new user accounts or edit existing ones. You can
-        also add and remove users from groups (also known as "user privileges").</dd>
+        <dd class="[% class %]">Crear nuevas cuentas de usuarios o editar las existentes. También puede
+        añadir o eliminar usuarios de grupos (también conocido como "Privilegios de Usuario").</dd>
 
-        [% class = (Param('useclassification') && user.in_group('editclassifications')) ? "" : "forbidden" %]
+        [% class = (Param('useclassification') && user.in_group('editclassifications')) ? "" : "prohibido" %]
         <dt id="classifications" class="[% class %]"><a href="editclassifications.cgi">Classifications</a></dt>
-        <dd class="[% class %]">If your installation has to manage many products at once,
-        it's a good idea to group these products into distinct categories. This lets users
-        find information more easily when doing searches or when filing new [% terms.bugs %].</dd>
+        <dd class="[% class %]">Si su instalación tiene que gestionar muchos productos a la vez,
+        es una buena idea agrupar estos productes en distintas categorias. Esto permite a los usuarios
+        buscar información más fácilmente al hacer búsquedas o al crear nuevos [% terms.bugs %].</dd>
 
         [% class = (user.in_group('editcomponents')
-                    || user.get_products_by_permission("editcomponents").size) ? "" : "forbidden" %]
-        <dt id="products" class="[% class %]"><a href="editproducts.cgi">Products</a></dt>
-        <dd class="[% class %]">Edit all aspects of products, including group restrictions
-        which let you define who can access [% terms.bugs %] being in these products. You
-        can also edit some specific attributes of products such as
-        <a href="editcomponents.cgi">components</a>, <a href="editversions.cgi">versions</a>
-        and <a href="editmilestones.cgi">milestones</a> directly.</dd>
+                    || user.get_products_by_permission("editcomponents").size) ? "" : "prohibido" %]
+        <dt id="products" class="[% class %]"><a href="editproducts.cgi">Productos</a></dt>
+        <dd class="[% class %]">Editar todos los aspectos de los productos, incluyend las restricciones de grupo
+        que permiten definir quién puede acceder a los [% terms.bugs %] que haya en estos productos. También
+        puede editar algunos atributos específicos de productos tales como
+        <a href="editcomponents.cgi">componentes</a>, <a href="editversions.cgi">versiones</a>
+        e <a href="editmilestones.cgi">hitos</a> directamente.</dd>
 
         [% class = (user.in_group('editcomponents')
-                   || user.get_products_by_permission('editcomponents').size) ? "" : "forbidden" %]
+                   || user.get_products_by_permission('editcomponents').size) ? "" : "prohibido" %]
         <dt id="flags" class="[% class %]"><a href="editflagtypes.cgi">Flags</a></dt>
-        <dd class="[% class %]">A flag is a custom 4-states attribute of [% terms.bugs %]
-        and/or attachments. These states are: granted, denied, requested and undefined.
-        You can set as many flags as desired per [% terms.bug %], and define which users
-        are allowed to edit them.</dd>
+        <dd class="[% class %]">Un indicador es un atributo personalizado con 4 estados de los [% terms.bugs %]
+        y/o adjuntos. Estos estados son: concedido, denegado, solicitado y sin definir.
+        Pueden ponerse cuantos indicadores se deseen por [% terms.bug %], y definir qué usuarios
+        pueden editarlos.</dd>
 
         [% Hook.process('end_links_left') %]
       </dl>
@@ -81,52 +89,52 @@
 
     <td class="admin_links">
       <dl>
-        [% class = user.in_group('admin') ? "" : "forbidden" %]
-        <dt id="custom_fields" class="[% class %]"><a href="editfields.cgi">Custom Fields</a></dt>
-        <dd class="[% class %]">Bugzilla lets you define fields which are
-        not implemented by default, based on your local and specific requirements.
-        These fields can then be used as any other field, meaning that you can set
-        them in [% terms.bugs %] and run any search involving them.<br>
-        Before creating new fields, keep in mind that too many fields may make the user
-        interface more complex and harder to use. Be sure you have investigated other ways
-        to satisfy your needs before doing this.</dd>
+        [% class = user.in_group('admin') ? "" : "prohibido" %]
+        <dt id="custom_fields" class="[% class %]"><a href="editfields.cgi">Campos Personalizados</a></dt>
+        <dd class="[% class %]">Bugzilla le permite definir campos que no
+        están implementados por defecto, basados en los requisitos locales específicos.
+        Estos campos se pueden usar como cualquier otro campo, lo que significa que usted puede
+        ponerlos en los [% terms.bugs %] y ejecutar cualquier búsqueda usándolos.<br>
+        Antes de crear nuevos campos, recuerde que demasiados campos pueden hacer que el
+        interfaz de usuario sea más complejo y difícil de usar. Asegúrese de que ha investigado otras formas
+        de satisfacer sus necesidades antes de hacer esto.</dd>
 
-        <dt id="field_values" class="[% class %]"><a href="editvalues.cgi">Field Values</a></dt>
-        <dd class="[% class %]">Define legal values for fields whose values must belong
-        to some given list. This is also the place where you define legal values for some
-        types of custom fields.</dd>
+        <dt id="field_values" class="[% class %]"><a href="editvalues.cgi">Valores de los Campos</a></dt>
+        <dd class="[% class %]">Define valores válidos para los campos cuyos valores deben pertenecer
+        a una lista dada. También es éste el lugar donde se definen los valores válidos para algunos
+        tipos de campos personalizados.</dd>
 
-        <dt id="status_workflow" class="[% class %]"><a href="editworkflow.cgi">[%terms.Bug %] Status Workflow</a></dt>
-        <dd class="[% class %]">Customize your workflow and choose initial [% terms.bug %]
-        statuses available on [% terms.bug %] creation and allowed [% terms.bug %] status
-        transitions when editing existing [% terms.bugs %].</dd>
+        <dt id="status_workflow" class="[% class %]"><a href="editworkflow.cgi">Flujo de Estado del [%terms.Bug %]</a></dt>
+        <dd class="[% class %]">Personalice su flujo y elija los estados iniciales de un [% terms.bug %]
+        disponibles en la creación de un [% terms.bug %], así como las transiciones de estado de un [% terms.bug %]
+        permitidas al editar [% terms.bugs %] existentes.</dd>
 
-        [% class = user.in_group('creategroups') ? "" : "forbidden" %]
-        <dt id="groups" class="[% class %]"><a href="editgroups.cgi">Groups</a></dt>
-        <dd class="[% class %]">Define groups which will be used in the installation.
-        They can either be used to define new user privileges or to restrict the access
-        to some [% terms.bugs %].</dd>
+        [% class = user.in_group('creategroups') ? "" : "prohibido" %]
+        <dt id="groups" class="[% class %]"><a href="editgroups.cgi">Grupos</a></dt>
+        <dd class="[% class %]">Define los grupos que se usarán en la instalación.
+        Se pueden usar para definir nuevos privilegios de usuario o para restringir el acceso
+        a algunos [% terms.bugs %].</dd>
 
-        [% class = user.in_group('editkeywords') ? "" : "forbidden" %]
-        <dt id="keywords" class="[% class %]"><a href="editkeywords.cgi">Keywords</a></dt>
-        <dd class="[% class %]">Set keywords to be used with [% terms.bugs %]. Keywords
-        are an easy way to "tag" [% terms.bugs %] to let you find them more easily later.</dd>
+        [% class = user.in_group('editkeywords') ? "" : "prohibido" %]
+        <dt id="keywords" class="[% class %]"><a href="editkeywords.cgi">Palabras clave</a></dt>
+        <dd class="[% class %]">Define palabras clave que se van a usar con los [% terms.bugs %]. Las palabras clave
+        son una forma fácil de "etiquetar" [% terms.bugs %] para permitirle encontrarlos después más fácilmente.</dd>
 
-        [% class = user.in_group('bz_canusewhines') ? "" : "forbidden" %]
-        <dt id="whining" class="[% class %]"><a href="editwhines.cgi">Whining</a></dt>
-        <dd class="[% class %]">Set queries which will be run at some specified date
-        and time, and get the result of these queries directly per email. This is a
-        good way to create reminders and to keep track of the activity in your installation.</dd>
+        [% class = user.in_group('bz_canusewhines') ? "" : "prohibido" %]
+        <dt id="whining" class="[% class %]"><a href="editwhines.cgi">Avisos</a></dt>
+        <dd class="[% class %]">Establece consultas que serán ejecutadas en una fecha y hora especificadas,
+        y recibe el resultado de estas consultas directamente por email. Esta es una buena manera
+        de crear recordatorios y de realizar un seguimiento de las actividades en su instalación.</dd>
 
         [% IF Param('use_mailer_queue') %]
-          [% class = user.in_group('admin') ? "" : "forbidden" %]
-          <dt id="view_job_queue" class="[% class %]"><a href="view_job_queue.cgi">Job Queue</a></dt>
-          <dd class="[% class %]">View the queue of undelivered/deferred jobs/emails.</dd>
+          [% class = user.in_group('admin') ? "" : "prohibido" %]
+          <dt id="view_job_queue" class="[% class %]"><a href="view_job_queue.cgi">Cola de Tareas</a></dt>
+          <dd class="[% class %]">Vea la cola de los emails de trabajos sin entregar/diferidos.</dd>
         [% END %]
 
         <dt id="release_notes">
-          <a href="page.cgi?id=release-notes.html">Release Notes</a></dt>
-        <dd>Detailed information related to this release of Bugzilla.</dd>
+          <a href="page.cgi?id=release-notes.html">Notas de la Versión</a></dt>
+        <dd>Información detallata relacionada con esta versión de Bugzilla.</dd>
 
         [% Hook.process('end_links_right') %]
       </dl>
